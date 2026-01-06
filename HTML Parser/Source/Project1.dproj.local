@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.014,D:\Incoming\[.WORK]\HTML_parser.dpk\Source\uMain.pas=D:\Incoming\[.WORK]\HTML_parser.dpk\Source\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.097,D:\Incoming\[.WORK]\HTML_parser.dpk\Source\HTMLPars.dproj=D:\Incoming\[.WORK]\HTML_parser.dpk\Source\HTMLParser.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.183,D:\Incoming\[.WORK]\HTML_parser.dpk\Source\HTMLParser.dproj=D:\Incoming\[.WORK]\HTML_parser.dpk\Source\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.014,D:\Incoming\[.WORK]\HTML_parser.dpk\Source\uMain.dfm=D:\Incoming\[.WORK]\HTML_parser.dpk\Source\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
