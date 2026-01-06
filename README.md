@@ -10,7 +10,7 @@
 
 </br>
 
-
+Parsing, syntax analysis, or syntactic analysis is a process of analyzing a [string](https://en.wikipedia.org/wiki/String_(computer_science)) of [symbols](https://en.wikipedia.org/wiki/Symbol_(formal)), either in natural language, [computer languages](https://en.wikipedia.org/wiki/Computer_language) or [data structures](https://en.wikipedia.org/wiki/Data_structure), conforming to the rules of a formal grammar by breaking it into parts. The term parsing comes from Latin pars (orationis), meaning part (of speech).
 
 
 
