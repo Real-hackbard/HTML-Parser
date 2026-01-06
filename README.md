@@ -56,4 +56,181 @@ The task of the parser is essentially to determine if and how the input can be d
   A parser can start with the input and attempt to rewrite it to the start symbol. Intuitively, the parser attempts to locate the most basic elements, then the elements containing these, and so on. [LR parsers](https://en.wikipedia.org/wiki/LR_parser) are examples of bottom-up parsers. Another term used for this type of parser is [Shift-Reduce](https://en.wikipedia.org/wiki/Shift-reduce_parser) parsing.
 
 # Parser Tags:
+In computer science and linguistics, parser tags are markers assigned to words or phrases to describe their grammatical function and structure within a sentence.
+Parser tags can be defined in this section, which is located within the component.
 
+```pascal
+Procedure   THTMLParser.AddTag(Tag:String);
+var
+ TagName   : String;
+ Hyperlink : String;
+ UHyperLink: String;
+ MetaName,
+ MetaContent : String;
+ P,S,Sc,Vr:String;
+ Ext      : String;
+Begin
+ If Buffering then
+ Begin
+  If Pos(Uppercase(BufferingTT),Uppercase(Tag))=0 then
+  Begin
+   Buffer:=Buffer+'<'+Tag+'>';
+   Exit;
+  End;
+ End;
+
+ { Remove all trailing spaces }
+ Screen.Cursor := crHourGlass;
+ Trim(Tag);
+
+ If Pos('!--',Tag)=0 then
+   If Assigned(FOnFoundTag) then FOnFoundTag(Self,Tag);
+
+ If Pos(' ',Tag)<>0 then
+  TagName:=Uppercase(Copy(Tag,1,Pos(' ',Tag)-1)) else
+  TagName:=Uppercase(Tag);
+
+ If TagName='A' then { Anchors }
+ Begin
+  Hyperlink:=ExtractValue(GetTagAttribute(Tag,'href'));
+  UHyperlink:=Uppercase(Hyperlink);
+  ParseURL(UHyperlink,P,S,Sc,Vr);
+
+  { Extension Check }
+  Ext:=ExtractFileExt(SC);
+  If Pos('HTM',Ext)<>0 then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FHTML.FRemote.Add(Hyperlink) else
+    FParsed.FHTML.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.JPG') or
+      (Ext='.JPEG') or
+      (Ext='.GIF') or
+      (Ext='.TIF') or
+      (Ext='.PCX') or
+      (Ext='.PNG') or
+      (Ext='.BMP'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FImage.FRemote.Add(Hyperlink) else
+    FParsed.FImage.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.AVI') or
+      (Ext='.MP3') or
+      (Ext='.AU') or
+      (Ext='.MOV') or
+      (Ext='.MPG') or
+      (Ext='.MPEG'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FMedia.FRemote.Add(Hyperlink) else
+    FParsed.FMedia.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.JS') or
+      (Ext='.CLASS') or
+      (Ext='.JAVA'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FJava.FRemote.Add(Hyperlink) else
+    FParsed.FJava.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.ASP'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FASP.FRemote.Add(Hyperlink) else
+    FParsed.FASP.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.PL') or
+      (Ext='.CGI'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FPERL.FRemote.Add(Hyperlink) else
+    FParsed.FPERL.FLocal.Add(Hyperlink);
+  End else
+  If Pos('PHP',Ext)<>0
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FPHP.FRemote.Add(Hyperlink) else
+    FParsed.FPHP.FLocal.Add(Hyperlink);
+  End else
+  if ((Ext='.CAB'))
+  then
+  Begin
+   If Pos('HTTPS://',UHyperlink)<>0 then
+    FParsed.FActiveX.FRemote.Add(Hyperlink) else
+    FParsed.FActiveX.FLocal.Add(Hyperlink);
+  End;
+
+  If Pos('MAILTO:',Uppercase(hyperlink))<>0 then
+  begin
+   FParsed.FEmails.Add(Copy(Hyperlink,8,Length(Hyperlink)-7));
+  end else
+
+  If Pos('FTP://',UHyperlink)<>0 then
+  begin
+   FParsed.FFTPLinks.Add(Hyperlink);
+  end else
+
+  If Pos('HTTPS://',UHyperlink)<>0 then
+  begin
+   FParsed.FHTTPLinks.Add(Hyperlink);
+  end else
+
+  If Pos('://',UHyperlink)=0 then
+  begin
+   FParsed.FLocalLinks.Add(Hyperlink);
+  end else
+
+  If Assigned(FOnFoundHyperlink) then FOnFoundHyperlink(Self,Hyperlink);
+  FParsed.FHyperlinks.Add(Hyperlink);
+ End else
+
+ If TagName='IMG' then { Image }
+ Begin
+  FParsed.FImages.Add(ExtractValue(GetTagAttribute(Tag,'src')));
+ End else
+
+ If TagName='FRAME' then { Frame }
+ Begin
+  FParsed.FFramePages.Add(ExtractValue(GetTagAttribute(Tag,'src')));
+ End else
+
+ If TagName='META' then { Meta }
+ Begin
+  MetaName:=Uppercase(ExtractValue(GetTagAttribute(Tag,'name')));
+  MetaContent:=ExtractValue(GetTagAttribute(Tag,'content'));
+
+  If MetaName='KEYWORD' then
+   FParsed.FKeyword:=MetaContent else
+  if MetaName='DESCRIPTION' then
+   FParsed.FDescription:=MetaContent;
+ End else
+
+ If TagName='!--' then { Comment }
+ Begin
+  If Assigned(FOnFoundComment) then FOnFoundComment(Self,Copy(Tag,5,Length(Tag)-3-4));
+  { <!-- Comment --> }
+ End else
+ 
+ If (TagName='TITLE') then { Title }
+ Begin
+  Buffering:=True;
+  BufferingTT := '/TITLE';
+ End else
+
+ If (TagName='/TITLE') then
+ Begin
+  Buffering:=False;
+  BufferingTT:='';
+  FParsed.FTitle:=Buffer;
+  Buffer:='';
+ End;
+End;
+```
