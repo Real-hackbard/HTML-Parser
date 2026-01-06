@@ -49,7 +49,7 @@ FHyperlinks : tStrings; { All Related Document, Local+Remote }
 # Types of parsers:
 The task of the parser is essentially to determine if and how the input can be derived from the start symbol of the grammar. This can be done in essentially two ways:
 
-* [Top-down parsing](https://en.wikipedia.org/wiki/Top-down_parsing)
+* [Top-down parsing](https://en.wikipedia.org/wiki/Top-down_parsing)  
   Top-down parsing can be viewed as an attempt to find left-most derivations of an input-stream by searching for parse trees using a top-down expansion of the given formal grammar rules. Tokens are consumed from left to right. Inclusive choice is used to accommodate ambiguity by expanding all alternative right-hand-sides of grammar rules.[18] This is known as the primordial soup approach. Very similar to sentence diagramming, primordial soup breaks down the constituencies of sentences.
 
 
