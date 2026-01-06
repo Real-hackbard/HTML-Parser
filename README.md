@@ -244,15 +244,14 @@ Some of the well known parser development tools include the following:
 * [Definite clause grammar](https://en.wikipedia.org/wiki/Definite_clause_grammar)
 * [GOLD](https://en.wikipedia.org/wiki/GOLD_(parser))
 * [JavaCC](https://en.wikipedia.org/wiki/JavaCC)
-* Lemon
-* Lex
-* LuZc
-* Parboiled
-* Parsec
-* Ragel
-* Spirit Parser Framework
-* Syntax Definition Formalism
-* SYNTAX
-* XPL
-* Yacc
+* [Lemon](https://en.wikipedia.org/wiki/Lemon_(parser_generator))
+* [Lex](https://en.wikipedia.org/wiki/Lex_(software))
+* [Parboiled](https://en.wikipedia.org/wiki/Parboiled_(Java))
+* [Parsec](https://en.wikipedia.org/wiki/Parsec_(parser))
+* [Ragel](https://en.wikipedia.org/wiki/Ragel)
+* [Spirit Parser Framework](https://en.wikipedia.org/wiki/Spirit_Parser_Framework)
+* [Syntax Definition Formalism](https://en.wikipedia.org/wiki/Syntax_Definition_Formalism)
+* [SYNTAX](https://en.wikipedia.org/wiki/SYNTAX)
+* [XPL](https://en.wikipedia.org/wiki/XPL)
+* [Yacc](https://en.wikipedia.org/wiki/Yacc)
 
