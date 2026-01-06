@@ -20,7 +20,31 @@ The term has slightly different meanings in different branches of [linguistics](
 
 </br>
 
+# Parse Example:
 
+```pascal
+FHyperlinks : tStrings; { All Related Document, Local+Remote }
+    FImages     : tStrings; { Document in <IMG SRC=...}
+    FEmails     : tStrings; { Anchors <A.. with "mailto:"  }
+    FHTTPLinks  : tStrings; { Anchors <A.. with "http:"  }
+    FFTPLinks   : tStrings; { Anchors <A.. with "ftp:"  }
+    FLocalLinks : tStrings; { Anchors <A.. with no protocol }
+    FFramePages : tStrings; { <FRAME SRC=... }
+
+    { .. by extension.. }    
+    FHTML       : tLocalRemote;  { *.HTM,*.HTML,*.SHTML,*.DHTML }
+    FImage      : tLocalRemote;  { *.JPEG, *.GIF, *.TIF .. }
+    FMedia      : tLocalRemote;  { *.AVI, *.MP3, *.MPEG ... }
+    FJava       : tLocalRemote;  { *.JAVA, *.CLASS, *.JS }
+    FActiveX    : tLocalRemote;  { *.CAB .. }
+    FASP        : tLocalRemote;  { *.ASP }
+    FPHP        : tLocalRemote;  { *.PHP, *.PHP3 ... }
+    FPERL       : tLocalRemote;  { *.PL, *.CGI.. }
+
+    FTitle      : String;        { <TITLE>...</TITLE> }
+    FKeyword    : String;        { <META NAME="KEYWORD" ... }
+    FDescription: String;        { <META NAME="DESCRIPTION" ... }
+```
 
 
 
