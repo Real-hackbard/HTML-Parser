@@ -14,6 +14,11 @@ Parsing, syntax analysis, or syntactic analysis is a process of analyzing a [str
 
 The term has slightly different meanings in different branches of [linguistics](https://en.wikipedia.org/wiki/Linguistics) and [computer science](https://en.wikipedia.org/wiki/Computer_science). Traditional sentence parsing is often performed as a method of understanding the exact meaning of a sentence or word, sometimes with the aid of devices such as sentence diagrams. It usually emphasizes the importance of grammatical divisions such as [subject](https://en.wikipedia.org/wiki/Subject_(grammar)) and predicate.
 
+</br>
+
+![HTMLParser](https://github.com/user-attachments/assets/afb6e6cf-31a7-4ce6-aca4-10c90601807e)
+
+</br>
 
 
 
