@@ -55,5 +55,5 @@ The task of the parser is essentially to determine if and how the input can be d
 * [Bottom-up parsing](https://en.wikipedia.org/wiki/Bottom-up_parsing)
   A parser can start with the input and attempt to rewrite it to the start symbol. Intuitively, the parser attempts to locate the most basic elements, then the elements containing these, and so on. [LR parsers](https://en.wikipedia.org/wiki/LR_parser) are examples of bottom-up parsers. Another term used for this type of parser is [Shift-Reduce](https://en.wikipedia.org/wiki/Shift-reduce_parser) parsing.
 
-
+# Parser Tags:
 
